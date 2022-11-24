@@ -1,7 +1,7 @@
 <template>
-  <div class="card" style="width: 18rem;">
+  <div class="card" >
     <div class="card-header">
-      <a href=""> {{name}}</a>
+      <router-link :to="{path:`/users/${id}`}">{{name}}</router-link>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Username: {{username}}</li>
@@ -14,7 +14,7 @@
 <script>
 export default {
   name: "UserCard",
-  props:['name','username','email','phone']
+  props:['name','username','email','phone','id']
 }
 </script>
 

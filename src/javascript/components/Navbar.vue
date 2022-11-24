@@ -12,7 +12,7 @@
             </router-link>
           </li>
           <li class="nav-item mx-2">
-            <router-link :to="{name:'usersPage'}" active-class="active" class="nav-link " >Users
+            <router-link :to="{name:'showUser'}" active-class="active" class="nav-link " >Users
             </router-link>
           </li>
           <li class="nav-item mx-2">
