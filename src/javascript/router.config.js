@@ -2,9 +2,10 @@ import {createRouter,createWebHistory} from "vue-router";
 import Home from "./pages/Home.vue";
 import Users from "./pages/Users.vue";
 import Posts from "./pages/Posts.vue";
-import FindUser from "./components/Users/FindUser.vue";
-import ShowUsers from "./components/Users/ShowUsers.vue";
-
+import FindUser from "./components/Users/Find.vue";
+import ShowUsers from "./components/Users/index.vue";
+import ShowPosts from './components/Posts/index.vue'
+import EditPost from "./components/Posts/Edit.vue";
 const routes=[
     {
         path:'/',
@@ -14,6 +15,9 @@ const routes=[
         path:'/users',
         component: Users,
         name:'usersPage',
+        redirect:{
+            name:'showUser'
+        },
         children:[
             {
                 path:'',
@@ -30,7 +34,21 @@ const routes=[
     {
         path:'/posts',
         component:Posts,
-        name:'postsPage'
+        name:'postsPage',
+        redirect:{
+            name:'showPosts'
+        },
+        children: [
+            {
+                path:'',
+                component:ShowPosts,
+                name:'showPosts',
+            },{
+                path:':id',
+                component:EditPost,
+                name:'editPosts',
+            }
+        ]
     },
 ]
 const router=createRouter({

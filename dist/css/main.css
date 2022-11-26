@@ -10780,3 +10780,21 @@ textarea.form-control-lg {
     border-bottom: 2px solid #333;
 }
 
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[8].use[0]!./src/javascript/App.vue?vue&type=style&index=0&id=12849210&lang=css ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+
+.fade-enter-active,.fade-leave-active{
+  transition: all 400ms;
+}
+.fade-enter-from,.fade-leave-to{
+  opacity: 0;
+  transform: scale(90%);
+}
+.fade-enter-to,.fade-leave-from{
+  opacity: 1;
+  transform: scale(100%);
+}
+
+
+
