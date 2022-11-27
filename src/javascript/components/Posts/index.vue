@@ -29,21 +29,12 @@
 </template>
 
 <script>
-import axios from "axios";
-import {onMounted,ref} from "vue";
+import useIndexPost from "../../composables/Posts/useIndex.js";
 
 export default {
   name: "index",
   setup(){
-    let mode=ref(false)
-    let data=ref([])
-    onMounted(function () {
-      axios.get('https://jsonplaceholder.typicode.com/posts').then(result=>{
-        mode.value=true
-        data.value=result.data
-      })
-    })
-
+    const {data,mode}=useIndexPost()
     return {mode,data}
 
   }

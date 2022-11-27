@@ -32,38 +32,12 @@
 </template>
 
 <script>
-import {ref,onMounted} from "vue";
-import axios from "axios";
-import {useRoute} from "vue-router";
-import Swal from 'sweetalert2'
-
+import useShow from "../../composables/Posts/useShow.js";
 
 export default {
   name: "Edit",
   setup(){
-    let route=useRoute()
-    let mode=ref(false)
-    let deleteMode=ref(false)
-    let data=ref([])
-    onMounted(function () {
-      axios.get(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`).then(result=>{
-        data.value=result.data
-        mode.value=true
-      })
-    })
-    const deletePost = () => {
-      deleteMode.value=true
-      axios.delete(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`).then(res=>{
-        deleteMode.value=false
-        Swal.fire({
-          title:'Thanks!',
-          text:`Post(${route.params.id}) deleted successfully`,
-          confirmButtonText:'Ok'
-        })
-      })
-    }
-
-
+    const {data,deleteMode,deletePost,mode,route}=useShow()
     return {mode,data,route,deletePost,deleteMode}
   }
 }

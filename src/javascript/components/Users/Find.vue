@@ -12,23 +12,13 @@
 </template>
 
 <script>
-import axios from "axios";
-import {useRoute} from 'vue-router'
-import {ref,onMounted} from "vue";
+import useFind from "../../composables/Users/useFind.js";
 import UserCard from "./UserCard.vue";
 export default {
   name: "FindUser",
   components:{UserCard},
   setup(){
-    let userInfo=ref(null)
-    let mode=ref(false)
-    const route=useRoute()
-    onMounted(()=>{
-      axios.get(`https://jsonplaceholder.typicode.com/users/${route.params.id}`).then(response=>{
-        userInfo.value=response.data
-        mode.value=true
-      })
-    })
+    const {mode,userInfo}=useFind()
     return {userInfo,mode}
   }
 }

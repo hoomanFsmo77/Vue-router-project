@@ -12,21 +12,13 @@
 </template>
 
 <script>
-import axios from 'axios';
-import {ref,onMounted} from "vue";
 import UserCard from "./UserCard.vue";
+import useIndex from "../../composables/Users/useIndex.js";
 export default {
   name: "showUser",
   components: {UserCard},
   setup(){
-    let usersList=ref([])
-    let mode=ref(false)
-    onMounted(()=>{
-      axios.get('https://jsonplaceholder.typicode.com/users').then(response=>{
-        usersList.value=response.data
-        mode.value=true
-      })
-    })
+    const {mode,usersList}=useIndex()
     return {usersList,mode}
   }
 }
