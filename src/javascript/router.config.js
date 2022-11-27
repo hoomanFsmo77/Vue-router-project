@@ -1,11 +1,17 @@
 import {createRouter,createWebHistory} from "vue-router";
-import Home from "./pages/Home.vue";
-import Users from "./pages/Users.vue";
-import Posts from "./pages/Posts.vue";
-import FindUser from "./components/Users/Find.vue";
-import ShowUsers from "./components/Users/index.vue";
-import ShowPosts from './components/Posts/index.vue'
-import EditPost from "./components/Posts/Edit.vue";
+/////////////////// pages
+const Home=()=> import('./pages/Home.vue')
+const Users=()=>import('./pages/Users.vue')
+const Posts=()=>import('./pages/Posts.vue')
+////////////////// users component
+const FindUser=()=>import('./components/Users/Find.vue')
+const ShowUsers=()=>import('./components/Users/index.vue')
+///////////////// posts component
+const ShowPosts=()=>import('./components/Posts/index.vue')
+const ShowPost=()=>import('./components/Posts/Show.vue')
+const createPost=()=>import('./components/Posts/Create.vue')
+const editPost=()=>import('./components/Posts/Edit.vue')
+
 const routes=[
     {
         path:'/',
@@ -45,8 +51,17 @@ const routes=[
                 name:'showPosts',
             },{
                 path:':id',
-                component:EditPost,
-                name:'editPosts',
+                component:ShowPost,
+                name:'showPost',
+            },{
+                path:'create',
+                component:createPost,
+                name:'createPost',
+            },{
+                path:'edit/:id',
+                component:editPost,
+                name:'editPost',
+                props:true
             }
         ]
     },

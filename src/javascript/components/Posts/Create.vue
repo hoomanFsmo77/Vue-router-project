@@ -12,7 +12,7 @@
           <textarea v-model="body" type="text" class="form-control" id="body" rows="6"></textarea>
         </div>
         <button @click="createPost" class="btn btn-dark mt-2">
-          edit Post
+          Create Post
           <span v-if="mode" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </button>
       </div>
@@ -21,42 +21,37 @@
 </template>
 
 <script>
-import {ref,onMounted} from "vue";
 import axios from "axios";
+import {ref} from "vue";
 import Swal from 'sweetalert2'
 
 export default {
-  name: "Edit",
-  props:['id'],
-  setup(props){
+  name: "Create",
+  setup(){
     let title=ref('')
     let body=ref('')
     let mode=ref(false)
-    onMounted(()=>{
-      axios.get(`https://jsonplaceholder.typicode.com/posts/${props.id}`).then(result=>{
-        title.value=result.data.title
-        body.value=result.data.body
-      })
-    })
-
 
     const createPost = () => {
       mode.value=true
-      axios.put(`https://jsonplaceholder.typicode.com/posts/${props.id}`,{
+      axios.post('https://jsonplaceholder.typicode.com/posts',{
         title:title.value,
         body:body.value
-      }).then(res=>{
+      }).then(result=>{
         mode.value=false
         Swal.fire({
-          title:'Thanks!',
-          text:'Post updated successfully',
+            title:'Thanks!',
+            text:'Post created successfully',
           confirmButtonText:'Ok'
+
         })
       })
     }
 
-    return {title,body,createPost,mode}
+    return {createPost,title,body,mode}
+
   }
+
 }
 </script>
 
